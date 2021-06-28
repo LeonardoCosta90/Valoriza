@@ -49,11 +49,6 @@ Para a aplicação iniciar, você terá que configurar o banco de dados no `ormc
 
 Por fim, a aplicação estará disponível em `http://localhost:3333`
 
-## ⛓️ Variáveis de ambiente
-
-Para iniciar esse projeto, você irá precisar configurar o .env.example.
-Renomeie o arquivo de `.env.example` para `.env` e coloque as configurações necessárias dentro do arquivo.
-
 ## 📝 Contato
 
 Se você tiver alguma dúvida ou problema abra uma issue no repositório ou me contate pelo e-mail: leonardoeverton.tec@gmail.com
