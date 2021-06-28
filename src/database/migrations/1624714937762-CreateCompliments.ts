@@ -1,6 +1,7 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export class CreateCompliments1624655935461 implements MigrationInterface {
+export class CreateCompliments1624714937762 implements MigrationInterface {
+
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
@@ -32,8 +33,8 @@ export class CreateCompliments1624655935461 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()",
                     },
-                ],
-                foreignKeys: [
+                    ],
+                    foreignKeys: [
                     {
                         name: "FKUserSenderCompliments",
                         referencedTableName: "users",
@@ -52,7 +53,7 @@ export class CreateCompliments1624655935461 implements MigrationInterface {
                     },
                     {
                         name: "FKTagCompliments",
-                        referencedTableName: "tags",
+                        referencedTableName: "users",
                         referencedColumnNames: ["id"],
                         columnNames: ["tag_id"],
                         onDelete: "SET NULL",
@@ -60,10 +61,22 @@ export class CreateCompliments1624655935461 implements MigrationInterface {
                     },
                 ],
             })
-        );
+        )
+        await queryRunner.createForeignKey(
+            "compliments",
+            new TableForeignKey({
+                name: "FKUserSenderCompliments",
+                referencedTableName: "users",
+                referencedColumnNames: ["id"],
+                columnNames: ["user_sender"],
+                onDelete: "SET NULL",
+                onUpdate: "SET NULL" 
+            })
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("compliments");
     }
+
 }
